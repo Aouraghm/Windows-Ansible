@@ -1,0 +1,7 @@
+[windows]
+57.153.193.221
+
+
+[windows:vars]
+ansible_user=maouragh
+ansible_password=M@ouragh2024
