@@ -1,0 +1,32 @@
+---
+- name: Manage Windows Server
+  hosts: windows
+  tasks:
+
+    - name: Ping the Windows host
+      win_ping:
+
+    - name: Create a directory
+      win_file:
+        path: C:\example_dir
+        state: directory
+   
+    - name: Copy a file to the Windows host
+      win_copy:
+        src: ../roles/windows/files/test.txt
+        dest: C:\example_dir
+    
+    - name: Ensure the Windows Feature IIS is installed
+      win_feature:
+        name: Web-Server
+        state: present
+    
+    - name: Run a PowerShell script
+      win_shell: 
+        Write-Output "Hello, Ansible!"
+        $env:EXAMPLE_VAR
+    
+    - name: Reboot the Windows host if needed
+      win_reboot:
+        reboot_timeout_sec: 60
+                                                                                                                                                                                                                                                                
