@@ -1,0 +1,7 @@
+- name: Install Notepad++
+  hosts: windows
+  gather_facts: false
+
+  roles:
+    - role: ../roles/windows
+

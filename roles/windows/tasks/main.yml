@@ -1,0 +1,19 @@
+---
+- name: Copy Notepad++ installer to the remote machine
+  win_copy:
+    src: ../files/npp.8.6.5.Installer.x64.exe
+    dest: C:\temp\
+
+- name: Run Notepad++ installer
+  win_package:
+    path: C:\temp\npp.8.6.5.Installer.x64.exe
+    state: present
+    arguments: /S
+  register: install_notepadpp_result
+
+- name: Remove the installer after installation
+  win_file: 
+    path: C:\temp\npp.8.6.5.Installer.x64.exe
+    state: absent
+  when: install_notepadpp_result is succeeded
+
